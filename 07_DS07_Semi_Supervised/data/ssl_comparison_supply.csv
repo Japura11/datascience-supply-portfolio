@@ -1,0 +1,4 @@
+method,acc_unlabeled,loo_acc,n_pseudo,n_labeled
+Supervised_RF,0.5638297872340425,0.6538461538461539,0,26
+Label_Propagation,0.6063829787234043,0.6153846153846154,0,26
+Self_Training,0.4148936170212766,,94,120

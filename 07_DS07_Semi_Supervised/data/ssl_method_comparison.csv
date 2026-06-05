@@ -1,0 +1,5 @@
+method,accuracy,n_labeled,pct_labeled
+Supervised_15pct,0.9990485252140818,525,0.15
+Label_Propagation,0.9457659372026641,525,0.15
+Self_Training,1.0,1025,0.2927734932876321
+Oracle_70pct,1.0,2450,0.7

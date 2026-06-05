@@ -1,0 +1,4 @@
+method,accuracy,baseline
+LM_Score,0.8833333333333333,0.35
+TFIDF_Score,0.8666666666666667,0.35
+NaiveBayes,1.0,0.35

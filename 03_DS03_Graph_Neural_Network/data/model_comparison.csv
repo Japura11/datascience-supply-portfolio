@@ -1,0 +1,4 @@
+model,test_acc,n_params,uses_graph
+MLP,1.0,128,False
+GCN,0.5,128,True
+GraphSAGE,0.3333333333333333,256,True

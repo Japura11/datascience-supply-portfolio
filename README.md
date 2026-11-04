@@ -88,3 +88,11 @@ pip install numpy pandas matplotlib scipy scikit-learn
 | DS-08 | AE MLP, VAE ELBO | Score de anomalía por proveedor |
 | DS-09 | ε-Greedy, UCB1, Thompson Sampling | Proveedor alternativo óptimo |
 | DS-10 | TF-IDF, Naive Bayes, regex | ETA extraída, alerta clasificada |
+
+---
+
+## 🎮 Proyecto adicional: Videojuego
+
+En [`videojuego/`](videojuego/) vive un proyecto de videojuego original en pre-producción,
+con su propio ecosistema de agentes de Claude Code (subagentes, skills, flujo de trabajo y
+plantillas de diseño). Ver [`videojuego/README.md`](videojuego/README.md).

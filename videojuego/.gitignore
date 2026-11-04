@@ -1,0 +1,19 @@
+# Godot
+.godot/
+*.import.tmp
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+# Node / web
+node_modules/
+dist/
+# Exportados y locales
+export/
+*.log
+.env
+.env.*
+.claude/settings.local.json

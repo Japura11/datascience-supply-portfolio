@@ -9,6 +9,10 @@ signal kicked(dino: Dino, part: String, power: float)
 signal dashed(dino: Dino)
 signal stepped(dino: Dino)
 
+const OVERLAY_PIXEL := 0.00045
+const BAR_WIDTH := 0.1
+const BAR_HEIGHT := 0.014
+
 var species_id: String = ""
 var species: Dictionary = {}
 var tuning: Dictionary = {}
@@ -26,8 +30,11 @@ var charge_amount: float = 0.0
 var _size := Vector3.ONE
 var _model: DinoModel
 var _ring: MeshInstance3D
+var _overlay: Node3D
 var _name_label: Label3D
-var _bar_label: Label3D
+var _bar_bg: MeshInstance3D
+var _bar_fg: MeshInstance3D
+var _shown_fraction: float = -1.0
 var _prev_velocity := Vector3.ZERO
 var _impact_cooldowns: Dictionary = {}
 var _is_knocked: bool = false
@@ -447,34 +454,56 @@ func _build_overlays() -> void:
 	_ring.scale = Vector3(1.0, 0.15, 1.0)
 	_ring.visible = is_human
 	add_child(_ring)
-	_name_label = _make_label(display_name(), 56, _size.y + 1.0)
+	# Indicadores de tamaño constante en pantalla (no tapan la vista con la cámara cercana).
+	_overlay = Node3D.new()
+	add_child(_overlay)
+	_name_label = Label3D.new()
+	_name_label.text = display_name()
+	_name_label.font_size = 40
+	_name_label.outline_size = 12
+	_name_label.pixel_size = OVERLAY_PIXEL
+	_name_label.fixed_size = true
+	_name_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	_name_label.no_depth_test = true
+	_name_label.offset = Vector2(0, 40)
 	_name_label.modulate = team_color.lightened(0.35)
-	_bar_label = _make_label("", 44, _size.y + 0.6)
+	_overlay.add_child(_name_label)
+	_bar_bg = _make_bar(Color(0.05, 0.05, 0.05, 0.75), 0)
+	_bar_fg = _make_bar(Color(0.4, 1.0, 0.4), 1)
 
 
-func _make_label(text: String, font_size: int, height: float) -> Label3D:
-	var label := Label3D.new()
-	label.text = text
-	label.font_size = font_size
-	label.outline_size = 10
-	label.pixel_size = 0.012
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.no_depth_test = true
-	label.position = Vector3(0, height, 0)
-	add_child(label)
-	return label
+func _make_bar(color: Color, priority: int) -> MeshInstance3D:
+	var quad := QuadMesh.new()
+	quad.size = Vector2(BAR_WIDTH, BAR_HEIGHT)
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	material.fixed_size = true
+	material.no_depth_test = true
+	material.render_priority = priority
+	material.albedo_color = color
+	quad.material = material
+	var bar := MeshInstance3D.new()
+	bar.mesh = quad
+	bar.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_overlay.add_child(bar)
+	return bar
 
 
 func _update_overlays() -> void:
-	var keep_upright := global_transform.basis.inverse()
-	_name_label.position = keep_upright * Vector3(0, _size.y + 1.0, 0)
-	_bar_label.position = keep_upright * Vector3(0, _size.y + 0.6, 0)
+	_overlay.position = global_transform.basis.inverse() * Vector3(0, _size.y + 0.5, 0)
 	var fraction := stamina.fraction()
-	var filled := int(round(fraction * 10.0))
-	_bar_label.text = "█".repeat(filled) + "░".repeat(10 - filled)
-	if fraction > 0.5:
-		_bar_label.modulate = Color(0.4, 1.0, 0.4)
-	elif fraction > 0.25:
-		_bar_label.modulate = Color(1.0, 0.85, 0.2)
-	else:
-		_bar_label.modulate = Color(1.0, 0.3, 0.25)
+	if absf(fraction - _shown_fraction) < 0.005:
+		return
+	_shown_fraction = fraction
+	var quad := _bar_fg.mesh as QuadMesh
+	quad.size = Vector2(BAR_WIDTH * fraction, BAR_HEIGHT)
+	quad.center_offset = Vector3(-BAR_WIDTH * 0.5 + BAR_WIDTH * fraction * 0.5, 0, 0)
+	_bar_fg.visible = fraction > 0.0
+	var color := Color(0.4, 1.0, 0.4)
+	if fraction <= 0.25:
+		color = Color(1.0, 0.3, 0.25)
+	elif fraction <= 0.5:
+		color = Color(1.0, 0.85, 0.2)
+	(quad.material as StandardMaterial3D).albedo_color = color

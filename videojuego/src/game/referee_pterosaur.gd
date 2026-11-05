@@ -50,11 +50,12 @@ func _process(delta: float) -> void:
 	if follow_target:
 		var target := follow_target.global_position
 		_center = _center.lerp(Vector3(target.x * 0.6, 0, target.z * 0.4), 1.0 - exp(-delta * 0.8))
-	var radius := 16.0
+	# Órbita elíptica por el lado del fondo para no tapar la cámara de transmisión.
 	var pos := (
-		_center + Vector3(cos(_angle) * radius, 15.0 + sin(_time * 0.7) * 1.5, sin(_angle) * radius)
+		_center
+		+ Vector3(cos(_angle) * 18.0, 10.0 + sin(_time * 0.7) * 1.2, -8.0 + sin(_angle) * 7.0)
 	)
-	var tangent := Vector3(-sin(_angle), 0, cos(_angle))
+	var tangent := Vector3(-sin(_angle) * 18.0, 0, cos(_angle) * 7.0).normalized()
 	global_position = pos
 	look_at(pos + tangent, Vector3.UP)
 	rotation.z = -0.25

@@ -7,8 +7,15 @@ cd "$(dirname "$0")/.."
 ran=0
 if [[ -f project.godot ]]; then
   echo "▶ Godot detectado"
-  command -v gdlint >/dev/null && { gdlint src/ ; ran=1; }
-  # Tests (GUT): godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://tests -gexit
+  if command -v gdformat >/dev/null; then gdformat --check src/ tests/; else echo "⚠ gdformat no instalado (pip install gdtoolkit)"; fi
+  if command -v gdlint >/dev/null; then gdlint src/ tests/; else echo "⚠ gdlint no instalado (pip install gdtoolkit)"; fi
+  GODOT_BIN="${GODOT_BIN:-godot}"
+  if command -v "$GODOT_BIN" >/dev/null && [[ -d addons/gut ]]; then
+    "$GODOT_BIN" --headless -s addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit
+  else
+    echo "⚠ Godot o GUT no disponibles: tests omitidos"
+  fi
+  ran=1
 fi
 if [[ -f package.json ]]; then
   echo "▶ Proyecto JS/TS detectado"

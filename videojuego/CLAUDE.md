@@ -7,8 +7,10 @@ lo que no cambie decisiones va en `docs/`.
 ## Estado actual
 
 - **Fase:** Pre-producción (ecosistema de agentes listo, sin código de juego).
-- **Motor / lenguaje:** _sin decidir_ → ver `docs/adr/0001-eleccion-de-motor.md`.
-  Hasta que el ADR esté **Aceptado**, no escribas código de gameplay.
+- **Juego:** plataformas / acción 3D, PC, comercial. Equipo: 1 persona + Claude. Plazo: 6–12 meses.
+- **Motor / lenguaje:** **Godot 4 + GDScript tipado** (ADR-0001 aceptado). Tests: GUT. Lint: gdtoolkit.
+- El usuario viene de Python/data y es nuevo en motores: explica los conceptos de Godot
+  (nodos, escenas, señales, `_physics_process`) la primera vez que aparezcan.
 - **Documento de diseño:** `docs/GDD.md` (fuente de verdad del diseño).
 
 ## Cómo trabajamos (resumen; detalle en `docs/WORKFLOW.md`)
@@ -42,7 +44,9 @@ lo que no cambie decisiones va en `docs/`.
 - Lógica de juego separada de presentación (render/audio/input) para poder testearla sin motor.
 - Nada de números mágicos en gameplay: los valores de tuning viven en datos (`src/data/` o equivalente).
 - Assets: nombres `snake_case`, prefijo por tipo (`spr_`, `sfx_`, `mus_`, `mdl_`, `tex_`). Ver `docs/ASSETS.md`.
-- Binarios grandes (>5 MB) → Git LFS una vez elegido el motor.
+- Binarios (`.glb`, `.png`, `.wav`, `.ogg`) → Git LFS.
+- GDScript siempre con tipos estáticos; `snake_case` para funciones/variables, `PascalCase` para clases y nodos.
+- Física y movimiento en `_physics_process(delta)`, nunca en `_process`.
 
 ## Comandos
 

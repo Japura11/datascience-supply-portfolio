@@ -1,12 +1,18 @@
 # ADR-0001: Elección de motor y lenguaje
 
-- **Estado:** Propuesto (pendiente de decidir)
-- **Fecha:** 2026-11-04
+- **Estado:** Aceptado
+- **Fecha:** 2026-11-05
 
 ## Contexto
 Hay que elegir motor antes de escribir código de gameplay. Depende de:
 género (2D/3D), plataforma objetivo, experiencia previa del equipo y licencias.
 El portafolio es mayoritariamente Python, lo que pesa en la curva de aprendizaje.
+
+Datos confirmados (bloques 1–2):
+- Género: plataformas / acción **3D**.
+- Plataforma: **PC** (Windows/Mac/Linux). Objetivo **comercial**.
+- Equipo: **una persona + Claude**, sin experiencia previa en motores (Python/data).
+- Plazo a primera versión publicable: **6–12 meses**.
 
 ## Opciones consideradas
 1. **Godot 4 (GDScript/C#)** — gratis y open source (MIT), ligero, excelente para 2D y bueno en 3D, escenas en texto (diffs legibles en git), GDScript con sintaxis parecida a Python. Contra: ecosistema de assets más pequeño que Unity.
@@ -15,11 +21,23 @@ El portafolio es mayoritariamente Python, lo que pesa en la curva de aprendizaje
 4. **Web (Phaser / TypeScript)** — se juega en el navegador, fácil de compartir en el portafolio. Contra: herramientas de editor más limitadas.
 
 ## Decisión
-_Pendiente._ Recomendación inicial del `arquitecto-motor`: **Godot 4 con GDScript** si es 2D
-o 3D ligero (sintaxis cercana a Python, archivos de texto amigables con git y con agentes);
-**Phaser** si la prioridad es que se juegue desde el navegador del portafolio.
+**Godot 4.x (rama estable) con GDScript tipado.**
 
-## Consecuencias (al aceptar)
-- Actualizar `scripts/check.sh` con lint y tests del motor (p. ej. gdlint + GUT en Godot).
-- Configurar `.gitattributes` / Git LFS para binarios.
-- Actualizar el "Estado actual" de `CLAUDE.md`.
+Motivos:
+- GDScript tiene sintaxis cercana a Python → curva mínima para un dev solo sin experiencia en motores.
+- Licencia MIT: sin royalties ni cuotas, adecuado para venta comercial.
+- Escenas y recursos en texto (`.tscn`, `.tres`): diffs legibles y editables por los agentes.
+- Exporta a Windows/macOS/Linux; publicable en Steam (GodotSteam) e itch.io.
+- Un 3D estilizado (low-poly / toon) está bien cubierto y es el alcance de arte realista para una persona.
+
+Descartados: Unreal (curva y peso excesivos para un dev solo novato), Unity (viable, pero licencia
+propietaria y C# añade curva), Pygame/Phaser (no adecuados para 3D comercial en PC).
+
+## Consecuencias
+- Estilo visual **estilizado**, no fotorrealista (se fija en el GDD).
+- GDScript con **tipado estático** obligatorio (`var speed: float`) para errores tempranos y autocompletado.
+- Tests con **GUT** (Godot Unit Test) en `tests/`; lint/format con **gdtoolkit** (`gdlint`, `gdformat`).
+- `scripts/check.sh` ejecuta gdlint + GUT en modo headless.
+- Git LFS para binarios (`.glb`, `.png`, `.wav`, `.ogg`) vía `.gitattributes`.
+- Controlador del personaje basado en `CharacterBody3D` con máquina de estados (ADR propio cuando se diseñe).
+- Riesgo: menos tutoriales 3D que Unity → mitigación: prototipos pequeños y referencias oficiales de Godot.

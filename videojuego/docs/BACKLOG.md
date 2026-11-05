@@ -7,7 +7,7 @@
 - [x] Visión, pilares, formato de partido, balance y modos (GDD bloques 1–6)
 - [x] Decidir motor (ADR-0001 → Godot 4 + Jolt)
 - [ ] Catálogo de especies: 10–12 con dieta, tamaño, coste en puntos y habilidad
-- [ ] Controles y cámara (bloque 7)
+- [x] Controles y cámara (bloque 7 → docs/design/controles.md)
 - [ ] Instalar Godot 4, GUT y gdtoolkit; proyecto base + `scripts/check.sh` en verde
 - [ ] Ficha: movimiento físico de dinosaurio (primera mecánica)
 

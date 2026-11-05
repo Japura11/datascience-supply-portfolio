@@ -1,7 +1,7 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–6)**
+> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–7)**
 > Título provisional: _por definir_
 
 ## 1. Visión en una frase
@@ -26,9 +26,9 @@ juegos de fútbol con físicas y combate, deathmatch por equipos. Todo el conten
 - Género: **deportes arcade 3D / fútbol con físicas y combate**
 - Plataformas: **PC (Windows / macOS / Linux)** — Steam / itch.io
 - Modelo: **comercial (premium)**
-- Cámara: **tercera persona elevada / vista de transmisión** (la más legible en fútbol);
-  opción de cámara detrás del jugador. _(a validar en prototipo)_
-- Controles: **mando como principal** + teclado/ratón
+- Cámara: **seleccionable** — **transmisión lateral elevada** (por defecto, obligatoria en local con
+  pantalla compartida) y **cámara detrás del jugador** (opcional, solo un humano). Ver `docs/design/controles.md`.
+- Controles: **mando como principal** + teclado/ratón, **complejidad media (7 acciones)**. Ver `docs/design/controles.md`.
 - Público objetivo: _(bloque 4)_
 - Duración de partido: **8–10 minutos** (dos tiempos; tiempo configurable en opciones)
 

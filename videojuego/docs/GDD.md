@@ -1,7 +1,7 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–5)**
+> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–6)**
 > Título provisional: _por definir_
 
 ## 1. Visión en una frase
@@ -30,7 +30,7 @@ juegos de fútbol con físicas y combate, deathmatch por equipos. Todo el conten
   opción de cámara detrás del jugador. _(a validar en prototipo)_
 - Controles: **mando como principal** + teclado/ratón
 - Público objetivo: _(bloque 4)_
-- Duración de partido: _(bloque 5)_
+- Duración de partido: **8–10 minutos** (dos tiempos; tiempo configurable en opciones)
 
 ## 3b. Formato de partido (bloque 4)
 - **5 vs 5** dinosaurios en el campo por equipo (estilo fútbol sala), más **banquillo** ("baraja").
@@ -41,6 +41,20 @@ juegos de fútbol con físicas y combate, deathmatch por equipos. Todo el conten
   - Multijugador local → cada humano tiene un **dinosaurio fijo**; los huecos los cubre la IA.
 - **Eliminación:** el dinosaurio eliminado **sale del partido** y entra uno del banquillo.
   Si el banquillo se agota, el equipo **juega con menos**. La gestión del banquillo es estrategia central.
+- **Victoria: solo por goles.** Eliminar es táctica (superioridad numérica), no condición de victoria.
+  _Duda: desempate en torneo (¿prórroga, penaltis, gol de oro?)._
+
+## 3c. Modos y progresión (bloque 6)
+| Modo | Descripción | Fase |
+|---|---|---|
+| Partido rápido | Elegir plantilla y jugar (IA o local) | Vertical slice |
+| Torneo / copa | Eliminatorias con rivales de dificultad creciente | Contenido |
+| Liga / carrera | Temporada con tu equipo y gestión entre partidos | Contenido (⚠ el más caro; versión simple en v1) |
+| Desbloqueo de especies | Se empieza con un subconjunto; el resto se gana jugando | Contenido |
+
+## 3d. Modelo de negocio
+- **Pago único** (10–20 USD) en Steam, todo incluido, **sin microtransacciones**.
+- **DLC** (especies/estadios) solo si la recepción lo justifica.
 
 ## 4. Core loop
 ```
@@ -99,7 +113,7 @@ Motor: **Godot 4 / GDScript**, física **Jolt** (ADR-0001).
 - **Prototipo 1 (mes 1–2):** 2 cápsulas con masa + balón en un campo gris. ¿Chocar y pasar es divertido?
 - **Prototipo 2:** recepción con timing, pase con curva, barra de furia, 1 habilidad.
 - **Vertical slice (mes 3–5):** 2 especies con arte final, 1 estadio, partido completo contra IA.
-- **Contenido (mes 6–10):** más especies, estadios, modo torneo, banquillo.
+- **Contenido (mes 6–10):** hasta 10–12 especies, estadios, torneo, liga simple, desbloqueos.
 - **Lanzamiento (mes 10–12):** pulido, página de Steam, demo.
 
 ⚠ Riesgo principal de alcance: **IA de equipo 5 vs 5** (posicionamiento, pases, presión, uso de habilidades).

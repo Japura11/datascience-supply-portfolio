@@ -7,7 +7,7 @@ lo que no cambie decisiones va en `docs/`.
 ## Estado actual
 
 - **Fase:** Pre-producción (ecosistema de agentes listo, sin código de juego).
-- **Juego:** plataformas / acción 3D, PC, comercial. Equipo: 1 persona + Claude. Plazo: 6–12 meses.
+- **Juego:** fútbol arcade 3D de dinosaurios con físicas, furia, eliminaciones y banquillo. PC, comercial. Equipo: 1 persona + Claude. Plazo: 6–12 meses.
 - **Motor / lenguaje:** **Godot 4 + GDScript tipado** (ADR-0001 aceptado). Tests: GUT. Lint: gdtoolkit.
 - El usuario viene de Python/data y es nuevo en motores: explica los conceptos de Godot
   (nodos, escenas, señales, `_physics_process`) la primera vez que aparezcan.

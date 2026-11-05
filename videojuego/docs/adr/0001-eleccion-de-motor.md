@@ -9,7 +9,7 @@ género (2D/3D), plataforma objetivo, experiencia previa del equipo y licencias.
 El portafolio es mayoritariamente Python, lo que pesa en la curva de aprendizaje.
 
 Datos confirmados (bloques 1–2):
-- Género: plataformas / acción **3D**.
+- Género: **fútbol arcade 3D de dinosaurios con físicas de choque** (revisado; inicialmente plataformas 3D).
 - Plataforma: **PC** (Windows/Mac/Linux). Objetivo **comercial**.
 - Equipo: **una persona + Claude**, sin experiencia previa en motores (Python/data).
 - Plazo a primera versión publicable: **6–12 meses**.
@@ -39,5 +39,7 @@ propietaria y C# añade curva), Pygame/Phaser (no adecuados para 3D comercial en
 - Tests con **GUT** (Godot Unit Test) en `tests/`; lint/format con **gdtoolkit** (`gdlint`, `gdformat`).
 - `scripts/check.sh` ejecuta gdlint + GUT en modo headless.
 - Git LFS para binarios (`.glb`, `.png`, `.wav`, `.ogg`) vía `.gitattributes`.
-- Controlador del personaje basado en `CharacterBody3D` con máquina de estados (ADR propio cuando se diseñe).
+- Física con **Jolt** (integrado en Godot 4.4+): mejor rendimiento y estabilidad en colisiones de cuerpos.
+- Dinosaurios como `RigidBody3D` o `CharacterBody3D` + impulsos: **decisión en ADR-0002** tras el prototipo 1.
+- La decisión de motor sigue siendo válida con el cambio de género: Godot cubre física 3D, IA y exportación a PC.
 - Riesgo: menos tutoriales 3D que Unity → mitigación: prototipos pequeños y referencias oficiales de Godot.

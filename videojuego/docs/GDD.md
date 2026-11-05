@@ -1,54 +1,96 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — bloques 1–2 completados**
+> Estado: **En construcción — concepto definido (bloque 3), pendiente bloque 4 (formato de partido)**
+> Título provisional: _por definir_
 
 ## 1. Visión en una frase
-_<Género> donde el jugador <verbo principal> para <objetivo>, con el giro de <diferenciador>._
+**Fútbol arcade 3D de dinosaurios** donde los choques de cuerpos con física real, las habilidades
+propias de cada especie y una barra de **furia** que permite **eliminar** rivales convierten cada
+partido en una mezcla de fútbol y combate táctico con **banquillo**.
 
-## 2. Pilares de diseño (3 máximo)
-1. _Pilar 1 — qué debe sentir el jugador_
-2. _Pilar 2_
-3. _Pilar 3_
+Referencias de *género* (no de contenido): simuladores/arcades de fútbol en tercera persona,
+juegos de fútbol con físicas y combate, deathmatch por equipos. Todo el contenido es original.
 
-Toda feature debe reforzar al menos un pilar. Si no, va a "Won't".
+## 2. Pilares de diseño
+1. **El cuerpo importa.** Masa, inercia y momentum reales: un choque se siente y cambia la jugada.
+   Cada dinosaurio se mueve según su anatomía (gira lento, acelera rápido, cola que golpea…).
+2. **Cada especie juega como es.** Las habilidades nacen de la biología del animal
+   (embestida del triceratops, mordida del T-Rex), no de poderes arbitrarios.
+3. **Fútbol con colmillos.** El objetivo es meter goles, pero la furia, las eliminaciones y la
+   gestión del banquillo son una segunda capa de estrategia.
+4. **Control con intención.** Pases, recepciones y tiros dependen de la posición, ángulo, curva
+   y *timing* del dinosaurio: la habilidad del jugador se nota.
 
 ## 3. Público y plataforma
-- Género: **plataformas / acción 3D**
-- Público objetivo: _(bloque pendiente)_
+- Género: **deportes arcade 3D / fútbol con físicas y combate**
 - Plataformas: **PC (Windows / macOS / Linux)** — Steam / itch.io
 - Modelo: **comercial (premium)**
-- Controles: _(bloque pendiente; en 3D se recomienda mando como principal + teclado/ratón)_
-- Duración de sesión típica: _(bloque pendiente)_
+- Cámara: **tercera persona elevada / vista de transmisión** (la más legible en fútbol);
+  opción de cámara detrás del jugador. _(a validar en prototipo)_
+- Controles: **mando como principal** + teclado/ratón
+- Público objetivo: _(bloque 4)_
+- Duración de partido: _(bloque 4)_
 
 ## 4. Core loop
 ```
-<acción> → <recompensa> → <progresión> → <acción más difícil/interesante>
+controlar el balón → pasar / chocar / acumular furia → gol o eliminación
+       ↑                                                     ↓
+   sustituir desde el banquillo  ←  gestionar plantilla y furia
 ```
-- Loop de segundos:
-- Loop de minutos:
-- Loop de horas/meta:
+- **Segundos:** moverse con inercia, recibir con timing, pasar/tirar con ángulo y curva, chocar.
+- **Minutos (partido):** goles, cargas de furia, eliminaciones y sustituciones.
+- **Meta (torneo):** elegir la "baraja" de dinosaurios, competir en torneos, desbloquear especies. _(a definir)_
 
 ## 5. Mecánicas
-| Mecánica | Verbo | Pilar | Ficha |
+| Mecánica | Descripción | Pilar | Ficha |
 |---|---|---|---|
-| | | | `docs/design/...` |
+| Movimiento físico | Locomoción con masa, aceleración, radio de giro por especie | 1, 2 | _pendiente_ |
+| Choques de cuerpos | Colisiones físicas reales; derribo según masa × velocidad | 1 | _pendiente_ |
+| Recepción con timing | Ventana de tiempo + input para controlar bien el balón; peor timing = balón suelto | 4 | _pendiente_ |
+| Pase / tiro / patada | Fuerza, ángulo y curva según postura y parte del cuerpo (pata, cola, cabeza) | 4, 2 | _pendiente_ |
+| Barra de furia | Se carga con acciones (choques, robos, recibir golpes…); habilita la habilidad especial | 3 | _pendiente_ |
+| Habilidad de especie | Ej.: Triceratops → embestida imparable que puede eliminar; T-Rex → furia + mordida que elimina al de enfrente | 2, 3 | _pendiente_ |
+| Eliminación y banquillo | El dinosaurio eliminado sale; entra uno de la "baraja" del banquillo | 3 | _pendiente_ |
+| Clases de tamaño | Límites por tamaño/peso para evitar desbalance (ver §6) | 1, 3 | _pendiente_ |
 
-## 6. Progresión y dificultad
+### Dinosaurios (catálogo inicial a diseñar)
+Dieta como identidad de rol (hipótesis a validar):
+- **Carnívoros:** agresivos, furia rápida, habilidades de eliminación (T-Rex, raptor…).
+- **Herbívoros:** robustos, buenos en choque y defensa (Triceratops, Ankylosaurus…).
+- **Omnívoros:** equilibrados / habilidades de apoyo.
+
+## 6. Balance
+- **Clases de tamaño** (p. ej. pequeño / mediano / grande) o **presupuesto de plantilla** por puntos
+  para que el tamaño no domine. _(decisión en bloque 4)_
+- Toda habilidad que elimina debe tener **contrajuego** (anticipable, esquivable, coste de furia).
+- Física "real" pero **afinada para la diversión**: realismo en masa y momentum, arcade en control del balón.
 
 ## 7. Mundo y narrativa
-Ver `docs/design/narrativa/BIBLIA.md`.
+Ligera: torneos de dinosaurios en estadios naturales (fantasía/naturaleza). Ver `docs/design/narrativa/BIBLIA.md`.
 
 ## 8. Estilo de arte y audio
-Referencias de *estilo* (no assets): paleta, resolución, tono musical.
+- **3D low-poly estilizado** hecho en Blender por el propio desarrollador.
+- Dinosaurios con siluetas muy distintas y legibles a distancia (clave en un juego de equipo).
+- Estadios integrados en la naturaleza: selvas, volcanes, praderas.
 
 ## 9. Alcance
 Equipo: **1 persona + Claude**. Plazo a versión publicable: **6–12 meses**.
-Motor: **Godot 4 / GDScript** (ADR-0001). Estilo visual: **3D estilizado** (no fotorrealista).
+Motor: **Godot 4 / GDScript**, física **Jolt** (ADR-0001).
 
-- **Prototipo (mes 1–2):** personaje en caja gris con movimiento y cámara que se sienten bien.
-- **Vertical slice (mes 3–4):** 1 nivel completo con calidad final de arte, audio y feedback.
-- **Contenido (mes 5–10):** resto de niveles reutilizando el kit del vertical slice.
-- **Lanzamiento (mes 10–12):** pulido, página de Steam, demo, marketing.
+- **Prototipo 1 (mes 1–2):** 2 cápsulas con masa + balón en un campo gris. ¿Chocar y pasar es divertido?
+- **Prototipo 2:** recepción con timing, pase con curva, barra de furia, 1 habilidad.
+- **Vertical slice (mes 3–5):** 2 especies con arte final, 1 estadio, partido completo contra IA.
+- **Contenido (mes 6–10):** más especies, estadios, modo torneo, banquillo.
+- **Lanzamiento (mes 10–12):** pulido, página de Steam, demo.
+
+⚠ Riesgo principal de alcance: **IA de equipo** y, si se quiere, **multijugador online con físicas**
+(muy costoso para una persona). Se decide en el bloque 4.
 
 ## 10. Dudas abiertas
+- Nº de dinosaurios por equipo y tamaño del campo.
+- ¿Contra IA, multijugador local, online?
+- ¿Qué pasa exactamente al ser "comido"/eliminado? ¿Penalización, tiempo fuera, límite de sustituciones?
+- ¿Se controla un dinosaurio fijo o se cambia al más cercano al balón (como en el fútbol clásico)?
+- Clases de tamaño vs presupuesto por puntos.
+- Título del juego.

@@ -1,6 +1,6 @@
 ---
 name: disenador-niveles
-description: Diseñador de niveles. Úsalo para diseñar layouts, ritmo (tensión/descanso), introducción progresiva de mecánicas, encuentros, colocación de recursos y curva de dificultad. También para diagnosticar niveles que se sienten aburridos, injustos o confusos.
+description: Diseñador de niveles/estadios. En este juego diseña campos y estadios (dimensiones, porterías, obstáculos, peligros ambientales), además de modos de torneo. Úsalo para diseñar layouts, ritmo (tensión/descanso), introducción progresiva de mecánicas, encuentros, colocación de recursos y curva de dificultad. También para diagnosticar niveles que se sienten aburridos, injustos o confusos.
 tools: Read, Grep, Glob, Edit, Write
 ---
 

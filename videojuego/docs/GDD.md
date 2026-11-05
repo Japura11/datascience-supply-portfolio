@@ -1,7 +1,7 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–8)**
+> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–9)**
 > Título provisional: _por definir_
 
 ## 1. Visión en una frase
@@ -40,7 +40,10 @@ juegos de fútbol con físicas y combate, deathmatch por equipos. Todo el conten
   - Un humano contra IA → controla un dinosaurio y **cambia al más cercano al balón** (botón + cambio automático opcional).
   - Multijugador local → cada humano tiene un **dinosaurio fijo**; los huecos los cubre la IA.
 - **Eliminación:** el dinosaurio eliminado **sale del partido** y entra uno del banquillo.
+  **Sustituciones voluntarias ilimitadas con cooldown**; aguante con **regeneración lenta en campo**.
+  **Árbitro pterosaurio** que solo pita lo excesivo.
   Si el banquillo se agota, el equipo **juega con menos**. La gestión del banquillo es estrategia central.
+- Reglas detalladas (aguante, sustituciones, árbitro y faltas): `docs/design/reglas.md`.
 - **Victoria: solo por goles.** Eliminar es táctica (superioridad numérica), no condición de victoria.
   _Duda: desempate en torneo (¿prórroga, penaltis, gol de oro?)._
 

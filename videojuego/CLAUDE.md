@@ -11,6 +11,7 @@ lo que no cambie decisiones va en `docs/`.
 - **Motor / lenguaje:** **Godot 4 + GDScript tipado** (ADR-0001 aceptado). Tests: GUT. Lint: gdtoolkit.
 - El usuario viene de Python/data y es nuevo en motores: explica los conceptos de Godot
   (nodos, escenas, señales, `_physics_process`) la primera vez que aparezcan.
+- El usuario desarrolla en **Windows**: instrucciones y rutas para Windows (PowerShell).
 - **Documento de diseño:** `docs/GDD.md` (fuente de verdad del diseño).
 
 ## Cómo trabajamos (resumen; detalle en `docs/WORKFLOW.md`)

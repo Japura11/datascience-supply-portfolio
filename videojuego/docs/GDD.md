@@ -1,7 +1,7 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — concepto definido (bloque 3), pendiente bloque 4 (formato de partido)**
+> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–4)**
 > Título provisional: _por definir_
 
 ## 1. Visión en una frase
@@ -30,7 +30,17 @@ juegos de fútbol con físicas y combate, deathmatch por equipos. Todo el conten
   opción de cámara detrás del jugador. _(a validar en prototipo)_
 - Controles: **mando como principal** + teclado/ratón
 - Público objetivo: _(bloque 4)_
-- Duración de partido: _(bloque 4)_
+- Duración de partido: _(bloque 5)_
+
+## 3b. Formato de partido (bloque 4)
+- **5 vs 5** dinosaurios en el campo por equipo (estilo fútbol sala), más **banquillo** ("baraja").
+- **Modos en la versión publicable:** contra **IA** y **multijugador local** (varios mandos, mismo PC).
+  Online: **fuera de alcance** hasta después del lanzamiento.
+- **Control:**
+  - Un humano contra IA → controla un dinosaurio y **cambia al más cercano al balón** (botón + cambio automático opcional).
+  - Multijugador local → cada humano tiene un **dinosaurio fijo**; los huecos los cubre la IA.
+- **Eliminación:** el dinosaurio eliminado **sale del partido** y entra uno del banquillo.
+  Si el banquillo se agota, el equipo **juega con menos**. La gestión del banquillo es estrategia central.
 
 ## 4. Core loop
 ```
@@ -84,13 +94,12 @@ Motor: **Godot 4 / GDScript**, física **Jolt** (ADR-0001).
 - **Contenido (mes 6–10):** más especies, estadios, modo torneo, banquillo.
 - **Lanzamiento (mes 10–12):** pulido, página de Steam, demo.
 
-⚠ Riesgo principal de alcance: **IA de equipo** y, si se quiere, **multijugador online con físicas**
-(muy costoso para una persona). Se decide en el bloque 4.
+⚠ Riesgo principal de alcance: **IA de equipo 5 vs 5** (posicionamiento, pases, presión, uso de habilidades).
+Mitigación: IA por roles simples (portero/defensa/ataque) y comportamiento basado en utilidad; online descartado para v1.
 
 ## 10. Dudas abiertas
-- Nº de dinosaurios por equipo y tamaño del campo.
-- ¿Contra IA, multijugador local, online?
-- ¿Qué pasa exactamente al ser "comido"/eliminado? ¿Penalización, tiempo fuera, límite de sustituciones?
-- ¿Se controla un dinosaurio fijo o se cambia al más cercano al balón (como en el fútbol clásico)?
+- Tamaño del campo y del banquillo (¿cuántas cartas?). ¿Hay sustituciones voluntarias además de las forzadas?
+- ¿La entrada desde el banquillo es instantánea o con unos segundos de inferioridad?
+- Cámara en multijugador local: ¿pantalla compartida única (recomendado en fútbol) o pantalla dividida?
 - Clases de tamaño vs presupuesto por puntos.
 - Título del juego.

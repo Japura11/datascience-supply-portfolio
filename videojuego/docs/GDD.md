@@ -1,7 +1,7 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–4)**
+> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–5)**
 > Título provisional: _por definir_
 
 ## 1. Visión en una frase
@@ -65,14 +65,22 @@ controlar el balón → pasar / chocar / acumular furia → gol o eliminación
 | Clases de tamaño | Límites por tamaño/peso para evitar desbalance (ver §6) | 1, 3 | _pendiente_ |
 
 ### Dinosaurios (catálogo inicial a diseñar)
+**Objetivo de lanzamiento: 10–12 especies.** ⚠ Es el mayor coste de arte del proyecto.
+Mitigación: agrupar por **esqueleto compartido** (bípedo grande, bípedo pequeño, cuadrúpedo, …)
+para reutilizar rig y animaciones; la **demo/vertical slice sale con 4–6** y el resto llega en
+la fase de contenido.
+
 Dieta como identidad de rol (hipótesis a validar):
 - **Carnívoros:** agresivos, furia rápida, habilidades de eliminación (T-Rex, raptor…).
 - **Herbívoros:** robustos, buenos en choque y defensa (Triceratops, Ankylosaurus…).
 - **Omnívoros:** equilibrados / habilidades de apoyo.
 
-## 6. Balance
-- **Clases de tamaño** (p. ej. pequeño / mediano / grande) o **presupuesto de plantilla** por puntos
-  para que el tamaño no domine. _(decisión en bloque 4)_
+## 6. Balance (bloque 5)
+- **Presupuesto por puntos:** cada especie tiene un coste según tamaño y poder. La plantilla
+  (5 en campo + banquillo) se arma con un **tope de puntos**. Grande y fuerte = caro = menos banquillo.
+- **Portero controlado por IA** (1 de los 5). _Duda: ¿el portero se elige de la plantilla y puede ser eliminado?_
+- **Furia** se carga con: **chocar/derribar** rivales, **recibir golpes** (mecánica de remontada) y
+  **acciones de fútbol** (robos, pases buenos, recepciones perfectas, goles). Sin carga pasiva por tiempo.
 - Toda habilidad que elimina debe tener **contrajuego** (anticipable, esquivable, coste de furia).
 - Física "real" pero **afinada para la diversión**: realismo en masa y momentum, arcade en control del balón.
 

@@ -9,18 +9,23 @@
 - [x] Catálogo candidato de 16 especies + sistema de habilidades/letalidad/combos (docs/design/dinosaurios.md)
 - [ ] Elegir las 10–12 especies del lanzamiento
 - [x] Controles y cámara (bloque 7 → docs/design/controles.md)
-- [ ] Instalar Godot 4, GUT y gdtoolkit; proyecto base + `scripts/check.sh` en verde
-- [ ] Ficha: movimiento físico de dinosaurio (primera mecánica)
+- [x] Reglas finas: aguante, sustituciones, árbitro (bloque 9)
+- [x] Proyecto base Godot 4.5 + `scripts/check.sh` / `check.ps1` en verde
+- [x] Ficha del Prototipo 1 (`docs/design/prototipo-1.md`)
 
 ## Hito 1: Prototipo 1 — "¿chocar y pasar es divertido?"
-- [ ] Campo gris, porterías, balón físico
-- [ ] 2 "dinosaurios cápsula" con masa, inercia y radio de giro distintos
-- [ ] Choques con derribo según masa × velocidad
-- [ ] Pase y tiro básicos
-- [ ] ADR-0002: RigidBody3D vs CharacterBody3D + impulsos
+- [x] Campo plano con líneas, paredes, porterías, gradas con público y paisaje
+- [x] 4 "dinos de bloques" (T-Rex, Velociraptor, Triceratops, Pachycephalosaurus) con masa e inercia
+- [x] Choques con daño/derribo según masa × velocidad, embestida, ragdoll, aguante
+- [x] Pata / cola / cabeza con potencia, curva y precisión
+- [x] Posesión y robo; IA simple 2 vs 2
+- [x] Game feel: hit-stop, temblor, polvo, sonido sintetizado, público reactivo, árbitro pterosaurio
+- [x] ADR-0002: RigidBody3D controlado por velocidad + ragdoll de cuerpo entero
+- [ ] **Playtest humano** (`/playtest`) y ajustes (`/balance`)
 
 ## Hito 2: Prototipo 2 — control con intención y furia
 - [ ] Recepción con ventana de timing
+- [ ] Faltas del árbitro pterosaurio
 - [ ] Pase/tiro con ángulo y curva
 - [ ] Barra de furia + 1 habilidad (embestida)
 - [ ] Eliminación + entrada desde banquillo

@@ -1,0 +1,56 @@
+{
+  "match": {"prototype_duration_s": 300.0, "goal_celebration_s": 3.0, "kickoff_delay_s": 1.2},
+  "field": {
+    "half_length": 32.0,
+    "half_width": 20.0,
+    "goal_width": 7.5,
+    "goal_height": 4.0,
+    "goal_depth": 3.0,
+    "wall_height": 4.0
+  },
+  "stamina": {
+    "regen_delay_s": 4.0,
+    "regen_fraction_per_s": 0.03,
+    "injured_threshold": 0.5,
+    "injured_speed_mult": 0.8,
+    "out_of_play_s": 5.0
+  },
+  "impact": {
+    "damage_scale": 2.0,
+    "knockdown_threshold": 9.0,
+    "knockback_scale": 0.5,
+    "charge_attack_mult": 1.8,
+    "max_damage_fraction_per_hit": 0.4,
+    "min_damage": 1.0,
+    "pair_cooldown_s": 0.4,
+    "stagger_s": 0.25,
+    "knockdown_base_s": 1.6
+  },
+  "tackle": {"impulse_speed": 9.0, "duration_s": 0.45, "cooldown_s": 2.5},
+  "sprint": {"speed_mult": 1.35, "turn_mult": 0.7},
+  "ball": {"radius": 0.6, "mass": 0.45, "curve_k": 0.15, "spin_decay_per_s": 0.5},
+  "possession": {
+    "control_radius": 1.3,
+    "base_control_speed": 6.0,
+    "control_speed_per_point": 2.0,
+    "max_control_height": 1.6,
+    "drop_distance": 2.6,
+    "steal_radius": 1.4,
+    "steal_rate_base": 1.2,
+    "dribble_speed_mult": 0.85
+  },
+  "kick": {
+    "charge_time_s": 0.9,
+    "reach": 1.8,
+    "cooldown_s": 0.35,
+    "aim_error_min_deg": 1.5,
+    "aim_error_max_deg": 11.0,
+    "parts": {
+      "foot": {"min_speed": 8.0, "max_speed": 21.0, "lift_min": 0.04, "lift_max": 0.14, "curve": 0.25},
+      "head": {"min_speed": 7.0, "max_speed": 19.0, "lift_min": 0.45, "lift_max": 0.6, "curve": 0.1},
+      "tail": {"min_speed": 10.0, "max_speed": 26.0, "lift_min": 0.18, "lift_max": 0.28, "curve": 1.0}
+    }
+  },
+  "feel": {"hit_stop_min_s": 0.04, "hit_stop_max_s": 0.11, "shake_per_impact": 0.5},
+  "teams": [["t_rex", "velociraptor"], ["triceratops", "pachycephalosaurus"]]
+}

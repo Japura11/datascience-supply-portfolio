@@ -6,7 +6,7 @@ lo que no cambie decisiones va en `docs/`.
 
 ## Estado actual
 
-- **Fase:** Pre-producción (ecosistema de agentes listo, sin código de juego).
+- **Fase:** Prototipo 1 jugable (campo plano, 2 vs 2). Siguiente: playtest humano → Prototipo 2.
 - **Juego:** fútbol arcade 3D de dinosaurios con físicas, furia, eliminaciones y banquillo. PC, comercial. Equipo: 1 persona + Claude. Plazo: 6–12 meses.
 - **Motor / lenguaje:** **Godot 4 + GDScript tipado** (ADR-0001 aceptado). Tests: GUT. Lint: gdtoolkit.
 - El usuario viene de Python/data y es nuevo en motores: explica los conceptos de Godot
@@ -51,7 +51,17 @@ lo que no cambie decisiones va en `docs/`.
 
 ## Comandos
 
-- `scripts/check.sh` — punto de entrada único de lint + tests. Se adapta al motor elegido.
+- `scripts/check.sh` (Linux/Mac/Git Bash) o `scripts/check.ps1` (Windows) — formato, lint, tests de
+  reglas y partido de humo IA vs IA. Requiere Godot (`GODOT_BIN`) y `pip install gdtoolkit==4.*`.
+- Jugar: abrir `project.godot` en Godot 4.5 y F5. Guía: `docs/PROTOTIPO_1.md`.
+
+## Mapa del código
+- `src/logic/` — reglas puras y testeables (choques, aguante, golpeo, posesión, marcador). Sin nodos.
+- `src/data/` — `species.json` y `tuning.json`: TODO el tuning. `game_data.gd` los carga y valida.
+- `src/game/` — nodos: `match_director` (flujo), `dino` (cuerpo físico), `ball`, `ai_controller`,
+  `player_controller`, `broadcast_camera`, `match_hud`, `stadium_builder`, `crowd`, `referee_pterosaur`.
+- `src/audio/sfx_synth.gd` — sonidos provisionales sintetizados (sin binarios ni licencias).
+- `tests/` — `test_*.gd` (runner propio `run_tests.gd`) y `smoke_match.gd`.
 
 ## No hacer
 

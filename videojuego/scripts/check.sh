@@ -1,36 +1,58 @@
 #!/usr/bin/env bash
-# Punto de entrada único de verificación (lint + tests) para agentes y CI.
-# Detecta el motor por los archivos del proyecto. Amplíalo al aceptar ADR-0001.
-set -euo pipefail
+# Punto de entrada único de verificación (formato + lint + tests + partido de humo).
+# Uso: scripts/check.sh            (Godot en el PATH como "godot")
+#      GODOT_BIN=/ruta/a/godot scripts/check.sh
+# En Windows (PowerShell): scripts\check.ps1
+set -uo pipefail
 cd "$(dirname "$0")/.."
 
-ran=0
-if [[ -f project.godot ]]; then
-  echo "▶ Godot detectado"
-  if command -v gdformat >/dev/null; then gdformat --check src/ tests/; else echo "⚠ gdformat no instalado (pip install gdtoolkit)"; fi
-  if command -v gdlint >/dev/null; then gdlint src/ tests/; else echo "⚠ gdlint no instalado (pip install gdtoolkit)"; fi
-  GODOT_BIN="${GODOT_BIN:-godot}"
-  if command -v "$GODOT_BIN" >/dev/null && [[ -d addons/gut ]]; then
-    "$GODOT_BIN" --headless -s addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit
-  else
-    echo "⚠ Godot o GUT no disponibles: tests omitidos"
-  fi
-  ran=1
-fi
-if [[ -f package.json ]]; then
-  echo "▶ Proyecto JS/TS detectado"
-  npm run --if-present lint
-  npm test --if-present
-  ran=1
-fi
-if [[ -f pyproject.toml || -f requirements.txt ]]; then
-  echo "▶ Proyecto Python detectado"
-  command -v ruff >/dev/null && ruff check src tests
-  python -m pytest -q tests
-  ran=1
+fail=0
+step() { echo; echo "▶ $1"; }
+
+if [[ ! -f project.godot ]]; then
+  echo "⚠ No hay project.godot: nada que verificar."
+  exit 0
 fi
 
-if [[ $ran -eq 0 ]]; then
-  echo "⚠ Aún no hay motor configurado (ver docs/adr/0001-eleccion-de-motor.md). Nada que verificar."
+step "Formato (gdformat)"
+if command -v gdformat >/dev/null; then
+  gdformat --check src/ tests/ || fail=1
+else
+  echo "⚠ gdformat no instalado (pip install gdtoolkit==4.*)"
 fi
-echo "✔ check.sh terminado"
+
+step "Lint (gdlint)"
+if command -v gdlint >/dev/null; then
+  gdlint src/ tests/ || fail=1
+else
+  echo "⚠ gdlint no instalado (pip install gdtoolkit==4.*)"
+fi
+
+GODOT_BIN="${GODOT_BIN:-godot}"
+if ! command -v "$GODOT_BIN" >/dev/null; then
+  echo "⚠ Godot no encontrado: define GODOT_BIN. Tests omitidos."
+  exit $fail
+fi
+
+# Ejecuta Godot y falla si el código de salida != 0 o si hay errores de script en la salida.
+run_godot() {
+  local log code=0
+  log=$("$GODOT_BIN" --headless --path . "$@" 2>&1) || code=$?
+  echo "$log" | grep -vE "^\s*$|Godot Engine v|ObjectDB instances leaked|at: cleanup"
+  if [[ $code -ne 0 ]] || grep -qE "SCRIPT ERROR|Parse Error" <<<"$log"; then
+    return 1
+  fi
+}
+
+step "Importar proyecto"
+"$GODOT_BIN" --headless --path . --import >/dev/null 2>&1 || true
+
+step "Tests de reglas (tests/test_*.gd)"
+run_godot -s res://tests/run_tests.gd || fail=1
+
+step "Partido de humo IA vs IA (60 s simulados)"
+run_godot --fixed-fps 60 -s res://tests/smoke_match.gd || fail=1
+
+echo
+if [[ $fail -eq 0 ]]; then echo "✔ check.sh: todo en verde"; else echo "✘ check.sh: hay fallos"; fi
+exit $fail

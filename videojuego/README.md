@@ -1,9 +1,10 @@
-# 🎮 Videojuego — proyecto en pre-producción
+# 🦖⚽ Dino Fútbol — fútbol arcade 3D de dinosaurios
 
-Proyecto de videojuego original dentro del portafolio. Esta primera entrega
-monta el **ecosistema de agentes de Claude Code** que apoya el desarrollo;
-el juego en sí arranca tras decidir el motor
-([ADR-0001](docs/adr/0001-eleccion-de-motor.md)).
+Juego original: fútbol 5 vs 5 con dinosaurios, choques con física real, habilidades por especie,
+furia, eliminaciones y banquillo. Motor **Godot 4.5** ([ADR-0001](docs/adr/0001-eleccion-de-motor.md)).
+
+**Estado:** Prototipo 1 jugable (2 vs 2 en campo plano). Cómo jugarlo: [docs/PROTOTIPO_1.md](docs/PROTOTIPO_1.md).
+Diseño: [GDD](docs/GDD.md) · [dinosaurios](docs/design/dinosaurios.md) · [controles](docs/design/controles.md) · [reglas](docs/design/reglas.md).
 
 ## Estructura
 ```
@@ -21,7 +22,11 @@ videojuego/
 │   ├── design/               ← fichas de feature, niveles, narrativa
 │   └── playtests/            ← reportes de playtest
 ├── scripts/check.sh          ← lint + tests (punto único para agentes y CI)
-├── src/  assets/  tests/
+├── project.godot             ← proyecto Godot (F5 para jugar)
+├── src/logic/                ← reglas puras testeables
+├── src/data/                 ← species.json + tuning.json (todo el tuning)
+├── src/game/  src/audio/     ← nodos del juego y sonido sintetizado
+├── tests/                    ← tests de reglas + partido de humo IA vs IA
 ```
 
 ## Empezar

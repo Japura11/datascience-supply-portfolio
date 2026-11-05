@@ -36,8 +36,10 @@ propietaria y C# añade curva), Pygame/Phaser (no adecuados para 3D comercial en
 ## Consecuencias
 - Estilo visual **estilizado**, no fotorrealista (se fija en el GDD).
 - GDScript con **tipado estático** obligatorio (`var speed: float`) para errores tempranos y autocompletado.
-- Tests con **GUT** (Godot Unit Test) en `tests/`; lint/format con **gdtoolkit** (`gdlint`, `gdformat`).
-- `scripts/check.sh` ejecuta gdlint + GUT en modo headless.
+- Tests con un **runner mínimo propio** (`tests/run_tests.gd`, sin dependencias) + test de humo
+  IA vs IA (`tests/smoke_match.gd`). GUT se puede adoptar más adelante si hace falta.
+- Lint/format con **gdtoolkit** (`gdlint`, `gdformat`).
+- `scripts/check.sh` (y `check.ps1` en Windows) ejecuta formato, lint, tests y partido de humo.
 - Git LFS para binarios (`.glb`, `.png`, `.wav`, `.ogg`) vía `.gitattributes`.
 - Física con **Jolt** (integrado en Godot 4.4+): mejor rendimiento y estabilidad en colisiones de cuerpos.
 - Dinosaurios como `RigidBody3D` o `CharacterBody3D` + impulsos: **decisión en ADR-0002** tras el prototipo 1.

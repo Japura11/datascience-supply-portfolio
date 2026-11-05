@@ -6,7 +6,8 @@
 - [x] Ecosistema de agentes y flujo de trabajo
 - [x] Visión, pilares, formato de partido, balance y modos (GDD bloques 1–6)
 - [x] Decidir motor (ADR-0001 → Godot 4 + Jolt)
-- [ ] Catálogo de especies: 10–12 con dieta, tamaño, coste en puntos y habilidad
+- [x] Catálogo candidato de 16 especies + sistema de habilidades/letalidad/combos (docs/design/dinosaurios.md)
+- [ ] Elegir las 10–12 especies del lanzamiento
 - [x] Controles y cámara (bloque 7 → docs/design/controles.md)
 - [ ] Instalar Godot 4, GUT y gdtoolkit; proyecto base + `scripts/check.sh` en verde
 - [ ] Ficha: movimiento físico de dinosaurio (primera mecánica)
@@ -26,7 +27,8 @@
 - [ ] IA básica por roles + portero IA
 
 ## Hito 3: Vertical slice
-- [ ] 4–6 especies con arte low-poly final (esqueletos compartidos)
+- [ ] 8 especies de la demo con arte low-poly final (4 esqueletos compartidos)
+- [ ] 1 combo de pareja (Trampolín de cráneo)
 - [ ] 1 estadio final, audio y feedback
 - [ ] Partido rápido 5v5 completo vs IA y local
 

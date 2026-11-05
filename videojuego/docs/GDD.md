@@ -1,7 +1,7 @@
 # GDD — Documento de Diseño del Juego
 
 > Fuente de verdad del diseño. Responsable: agente `disenador-juego` + aprobación humana.
-> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–7)**
+> Estado: **En construcción — concepto y formato de partido definidos (bloques 1–8)**
 > Título provisional: _por definir_
 
 ## 1. Visión en una frase
@@ -74,7 +74,9 @@ controlar el balón → pasar / chocar / acumular furia → gol o eliminación
 | Recepción con timing | Ventana de tiempo + input para controlar bien el balón; peor timing = balón suelto | 4 | _pendiente_ |
 | Pase / tiro / patada | Fuerza, ángulo y curva según postura y parte del cuerpo (pata, cola, cabeza) | 4, 2 | _pendiente_ |
 | Barra de furia | Se carga con acciones (choques, robos, recibir golpes…); habilita la habilidad especial | 3 | _pendiente_ |
-| Habilidad de especie | Ej.: Triceratops → embestida imparable que puede eliminar; T-Rex → furia + mordida que elimina al de enfrente | 2, 3 | _pendiente_ |
+| Kit de especie | 5 categorías (Ataque, Robo, Defensa, Manejo, Remate) + rasgo pasivo + habilidad de campo + habilidad de furia | 2, 3 | `docs/design/dinosaurios.md` |
+| Aguante y letalidad | Golpes desgastan; solo especies letales eliminan de golpe y solo a rivales de su tamaño o menor | 1, 3 | `docs/design/dinosaurios.md` |
+| Combos de pareja | Jugadas épicas entre compañeros (p. ej. Pachycephalosaurus salta sobre un compañero y remata de cabeza) | 2, 4 | `docs/design/dinosaurios.md` |
 | Eliminación y banquillo | El dinosaurio eliminado sale; entra uno de la "baraja" del banquillo | 3 | _pendiente_ |
 | Clases de tamaño | Límites por tamaño/peso para evitar desbalance (ver §6) | 1, 3 | _pendiente_ |
 
